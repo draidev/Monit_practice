@@ -1,0 +1,4 @@
+# 레드햇 계열(CentOS)
+check process docker with pidfile /var/run/docker.pid
+start program = "/usr/bin/systemctl start docker"
+stop program = "/usr/bin/systemctl stop docker"

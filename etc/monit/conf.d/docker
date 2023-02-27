@@ -1,0 +1,5 @@
+# Debian 계열 (Ubuntu)
+# docker의 process 확인을 pidfile로 한다
+check process docker with pidfile /var/run/docker.pid
+start program = "/etc/init.d/docker start"
+stop program = "/etc/init.d/systemctl stop"
