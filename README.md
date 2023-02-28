@@ -16,4 +16,28 @@ ChatGPT
 
 ---
 
+## monit 사용법   
+- monit의 기본 설정 파일은 ```/etc/monit/monitrc```에 있다.   
+- log는 ```/var/log/monit.log```에 쌓인다.   
+- 기본 설정 파일(monitrc)에서 ```/etc/monit/conf.d```폴더의 모든 파일을 include한다.   
+	- ```include /etc/monit/conf.d/*```   
 
+## daemon config 만들기   
+- ```/var/run/[process name].pid```파일이 생성되는 것으로 프로세스가 돌고 있는 것을 확인한다. ```.pid```파일 안에는 pid번호가 쓰여있다.   
+
+- Debian 계열(Ubuntu)   
+	- vi /etc/monit/conf.d/[process name]   
+	```
+	# docker의 process 확인을 pidfile로 한다   
+	check process docker with pidfile /var/run/docker.pid   
+	start program = "/etc/init.d/docker start"   
+	# stop program = "/etc/init.d/systemctl stop"   
+	```   
+- RedHat 계열(CentOS)   
+	- vi /etc/monit.d/[process name]
+	```
+	check process docker with pidfile /var/run/docker.pid   
+    start program = "/usr/bin/systemctl start docker"   
+    # stop program = "/usr/bin/systemctl stop docker"   
+	```   
+	
